@@ -31,7 +31,7 @@ variable "private_key" {
 }
 
 variable "domain_names" {
-  type        = list
+  type        = list(any)
   default     = []
   description = "List of fully qualified domain names (FQDNs) for which the certificate will be issued. The domains must be managed using DigitalOcean's DNS. Only valid when type is lets_encrypt."
 }
