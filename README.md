@@ -14,7 +14,7 @@
 <p align="center">
 
 <a href="https://www.terraform.io">
-  <img src="https://img.shields.io/badge/Terraform-v0.13-green" alt="Terraform">
+  <img src="https://img.shields.io/badge/Terraform-v0.15-green" alt="Terraform">
 </a>
 <a href="LICENSE.md">
   <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="Licence">
@@ -60,7 +60,7 @@ Here are examples of how you can use this module in your inventory structure:
 ```hcl
     module "custom_certificate" {
     source             = "clouddrove/certificate/digitalocean"
-    version            = "0.13.0"
+    version            = "0.15.0"
     certificate_name   = "test"
     private_key        = "./../../../_ssl/private-key.pem"
     leaf_certificate   = "./../../../_ssl/star.crt"
@@ -71,7 +71,7 @@ Here are examples of how you can use this module in your inventory structure:
 ```hcl
     module "lets_encrypt_certificate" {
     source                   = "clouddrove/certificate/digitalocean"
-    version                  = "0.13.0"
+    version                  = "0.15.0"
     certificate_name         = "test"
     domain_names             = ["clouddrove.com"]
     lets_encrypt_certificate = true
