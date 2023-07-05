@@ -12,10 +12,10 @@ variable "custom_certificate" {
   description = "A boolean flag to enable/disable custom_certificate."
 }
 
-variable "lets_encrypt_certificate" {
+variable "enabled" {
   type        = bool
-  default     = false
-  description = "A boolean flag to enable/disable lets_encrypt_certificate."
+  default     = true
+  description = "Flag to control the resources creation."
 }
 
 variable "certificate_name" {
@@ -38,7 +38,7 @@ variable "domain_names" {
 
 variable "leaf_certificate" {
   type        = string
-  default     = "~"
+  default     = ""
   description = "Path of certificate body."
 }
 

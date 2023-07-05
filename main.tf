@@ -1,11 +1,7 @@
-## Managed By : CloudDrove
-##Description : This Script is used to create SSL Certificate.
-## Copyright @ CloudDrove. All Right Reserved.
-
 #Module      : Certificate
 #Description : Provides a DigitalOcean Certificate resource that allows you to manage certificates.
 resource "digitalocean_certificate" "custom" {
-  count = var.enable_certificate && var.custom_certificate == true ? 1 : 0
+  count = var.enabled && var.enable_certificate && var.custom_certificate == true ? 1 : 0
 
   name              = var.certificate_name
   type              = "custom"
@@ -17,7 +13,7 @@ resource "digitalocean_certificate" "custom" {
 #Module      : Certificate
 #Description :Provides a DigitalOcean Certificate resource that allows you to manage certificates.
 resource "digitalocean_certificate" "lets_encrypt" {
-  count = var.enable_certificate && var.lets_encrypt_certificate == true ? 1 : 0
+  count = var.enabled && var.enable_certificate && var.custom_certificate == false ? 1 : 0
 
   name    = var.certificate_name
   type    = "lets_encrypt"
