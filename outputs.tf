@@ -1,6 +1,6 @@
-#Module      : Certificate
-#Description :Provides a DigitalOcean Certificate resource that allows you to manage certificates.
-
+##-------------------------------------------------------
+## OUTPUT
+##-------------------------------------------------------
 output "id" {
   value       = var.custom_certificate ? join("", digitalocean_certificate.custom[*].id) : join("", digitalocean_certificate.lets_encrypt[*].id)
   description = "The unique ID of the certificate."

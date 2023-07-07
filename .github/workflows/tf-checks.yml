@@ -8,7 +8,7 @@ jobs:
   tf-static-checks-custom-certificate-example:
     uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@master
     with:
-      working_directory: './_examples/custom_certificate/'
+      working_directory: './_examples/complete/'
 
   tf-static-checks-lets_encrypt-certificate-example:
     uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@master

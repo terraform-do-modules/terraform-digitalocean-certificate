@@ -50,6 +50,6 @@ usage : |-
       source                   = "terraform-do-modules/certificate/digitalocean"
       version                  = "0.15.0"
       certificate_name         = "test"
-      domain_names             = ["test.do.clouddrove.ca"]
+      domain_names             = ["clouddrove.ca"]
     }
   ```

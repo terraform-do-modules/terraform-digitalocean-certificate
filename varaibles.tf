@@ -1,11 +1,6 @@
-#Module      : Certificate
-#Description :Provides a DigitalOcean Certificate resource that allows you to manage certificates.
-variable "enable_certificate" {
-  type        = bool
-  default     = true
-  description = "A boolean flag to enable/disable certificate."
-}
-
+##-------------------------------------------------------
+## variable
+##-------------------------------------------------------
 variable "custom_certificate" {
   type        = bool
   default     = false
@@ -48,3 +43,14 @@ variable "certificate_chain" {
   description = "Path of certificate chain."
 }
 
+variable "type" {
+  type        = string
+  default     = "custom"
+  description = "The type of certificate to provision"
+}
+
+variable "certificate_type" {
+  type        = string
+  default     = "lets_encrypt"
+  description = "The type of certificate to provision"
+}

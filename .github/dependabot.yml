@@ -39,7 +39,7 @@ updates:
     open-pull-requests-limit: 3
 
   - package-ecosystem: "terraform" # See documentation for possible values
-    directory: "/_examples/custom_certificate" # Location of package manifests
+    directory: "/_examples/complete" # Location of package manifests
     schedule:
       interval: "weekly"
     # Add assignees
