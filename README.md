@@ -13,24 +13,27 @@
 
 <p align="center">
 
-<a href="https://www.terraform.io">
-  <img src="https://img.shields.io/badge/Terraform-v0.15-green" alt="Terraform">
+<a href="https://github.com/terraform-do-modules/terraform-digitalocean-certificate/releases/latest">
+  <img src="https://img.shields.io/github/release/terraform-do-modules/terraform-digitalocean-certificate.svg" alt="Latest Release">
+</a>
+<a href="https://github.com/terraform-do-modules/terraform-digitalocean-certificate/actions/workflows/tfsec.yml">
+  <img src="https://github.com/terraform-do-modules/terraform-digitalocean-certificate/actions/workflows/tfsec.yml/badge.svg" alt="tfsec">
 </a>
 <a href="LICENSE.md">
-  <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="Licence">
+  <img src="https://img.shields.io/badge/License-APACHE-blue.svg" alt="Licence">
 </a>
 
 
 </p>
 <p align="center">
 
-<a href='https://facebook.com/sharer/sharer.php?u=https://github.com/clouddrove/terraform-digitalocean-ssl-certificate'>
+<a href='https://facebook.com/sharer/sharer.php?u=https://github.com/terraform-do-modules/terraform-digitalocean-certificate'>
   <img title="Share on Facebook" src="https://user-images.githubusercontent.com/50652676/62817743-4f64cb80-bb59-11e9-90c7-b057252ded50.png" />
 </a>
-<a href='https://www.linkedin.com/shareArticle?mini=true&title=Terraform+DigitalOcean+SSL+Certificate&url=https://github.com/clouddrove/terraform-digitalocean-ssl-certificate'>
+<a href='https://www.linkedin.com/shareArticle?mini=true&title=Terraform+DigitalOcean+SSL+Certificate&url=https://github.com/terraform-do-modules/terraform-digitalocean-certificate'>
   <img title="Share on LinkedIn" src="https://user-images.githubusercontent.com/50652676/62817742-4e339e80-bb59-11e9-87b9-a1f68cae1049.png" />
 </a>
-<a href='https://twitter.com/intent/tweet/?text=Terraform+DigitalOcean+SSL+Certificate&url=https://github.com/clouddrove/terraform-digitalocean-ssl-certificate'>
+<a href='https://twitter.com/intent/tweet/?text=Terraform+DigitalOcean+SSL+Certificate&url=https://github.com/terraform-do-modules/terraform-digitalocean-certificate'>
   <img title="Share on Twitter" src="https://user-images.githubusercontent.com/50652676/62817740-4c69db00-bb59-11e9-8a79-3580fbbf6d5c.png" />
 </a>
 
@@ -44,6 +47,7 @@
 ## Prerequisites
 
 This module has a few dependencies: 
+- [Terraform 1.5.4](https://learn.hashicorp.com/terraform/getting-started/install.html)
 
 
 
@@ -52,29 +56,28 @@ This module has a few dependencies:
 
 
 
-**IMPORTANT:** Since the `master` branch used in `source` varies based on new modifications, we suggest that you use the release versions [here](https://github.com/clouddrove/terraform-digitalocean-ssl-certificate/releases).
+**IMPORTANT:** Since the `master` branch used in `source` varies based on new modifications, we suggest that you use the release versions [here](https://github.com/terraform-do-modules/terraform-digitalocean-certificate/releases).
 
 
 Here are examples of how you can use this module in your inventory structure:
 ### custom-certificate
 ```hcl
     module "custom_certificate" {
-    source             = "clouddrove/certificate/digitalocean"
-    version            = "0.15.0"
+    source             = "terraform-do-modules/certificate/digitalocean"
+    version            = "1.0.0"
     certificate_name   = "test"
-    private_key        = "./../../../_ssl/private_key.pem"
-    leaf_certificate   = "./../../../_ssl/star.crt"
-    custom_certificate = true
+    private_key        = "./../../private_key.pem"
+    leaf_certificate   = "./../../cert.pem"
+    certificate_chain  = "./../../fullchain.pem"
   }
 ```
 ### lets-encrypt-certificate
 ```hcl
     module "lets_encrypt_certificate" {
-    source                   = "clouddrove/certificate/digitalocean"
-    version                  = "0.15.0"
+    source                   = "terraform-do-modules/certificate/digitalocean"
+    version                  = "1.0.0"
     certificate_name         = "test"
-    domain_names             = ["clouddrove.com"]
-    lets_encrypt_certificate = true
+    domain_names             = ["clouddrove.ca"]
   }
 ```
 
@@ -89,12 +92,13 @@ Here are examples of how you can use this module in your inventory structure:
 |------|-------------|------|---------|:--------:|
 | certificate\_chain | Path of certificate chain. | `string` | `""` | no |
 | certificate\_name | The name of the certificate for identification. | `string` | `""` | no |
+| certificate\_type | The type of certificate to provision | `string` | `"lets_encrypt"` | no |
 | custom\_certificate | A boolean flag to enable/disable custom\_certificate. | `bool` | `false` | no |
-| domain\_names | List of fully qualified domain names (FQDNs) for which the certificate will be issued. The domains must be managed using DigitalOcean's DNS. Only valid when type is lets\_encrypt. | `list` | `[]` | no |
-| enable\_certificate | A boolean flag to enable/disable certificate. | `bool` | `true` | no |
-| leaf\_certificate | Path of certificate body. | `string` | `"~"` | no |
-| lets\_encrypt\_certificate | A boolean flag to enable/disable lets\_encrypt\_certificate. | `bool` | `false` | no |
+| domain\_names | List of fully qualified domain names (FQDNs) for which the certificate will be issued. The domains must be managed using DigitalOcean's DNS. Only valid when type is lets\_encrypt. | `list(any)` | `[]` | no |
+| enabled | Flag to control the resources creation. | `bool` | `true` | no |
+| leaf\_certificate | Path of certificate body. | `string` | `""` | no |
 | private\_key | Path of private key. | `string` | `""` | no |
+| type | The type of certificate to provision | `string` | `"custom"` | no |
 
 ## Outputs
 
@@ -104,6 +108,7 @@ Here are examples of how you can use this module in your inventory structure:
 | name | The name of the certificate. |
 | not\_after | The expiration date of the certificate. |
 | sha1\_fingerprint | The SHA-1 fingerprint of the certificate. |
+| uuid | The UUID of the certificate |
 
 
 
@@ -111,9 +116,9 @@ Here are examples of how you can use this module in your inventory structure:
 
 
 ## Feedback 
-If you come accross a bug or have any feedback, please log it in our [issue tracker](https://github.com/clouddrove/terraform-digitalocean-ssl-certificate/issues), or feel free to drop us an email at [hello@clouddrove.com](mailto:hello@clouddrove.com).
+If you come accross a bug or have any feedback, please log it in our [issue tracker](https://github.com/terraform-do-modules/terraform-digitalocean-certificate/issues), or feel free to drop us an email at [hello@clouddrove.com](mailto:hello@clouddrove.com).
 
-If you have found it worth your time, go ahead and give us a ★ on [our GitHub](https://github.com/clouddrove/terraform-digitalocean-ssl-certificate)!
+If you have found it worth your time, go ahead and give us a ★ on [our GitHub](https://github.com/terraform-do-modules/terraform-digitalocean-certificate)!
 
 ## About us
 
