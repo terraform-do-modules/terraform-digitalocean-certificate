@@ -8,19 +8,26 @@
 name : Terraform DigitalOcean SSL Certificate
 
 # License of this project
-license: "MIT"
+license: "APACHE"
 
 # Canonical GitHub repo
-github_repo: clouddrove/terraform-digitalocean-ssl-certificate
+github_repo: terraform-do-modules/terraform-digitalocean-certificate
 
 # Badges to display
 badges:
-  - name: "Terraform"
-    image: "https://img.shields.io/badge/Terraform-v0.15-green"
-    url: "https://www.terraform.io"
+  - name: "Latest Release"
+    image: "https://img.shields.io/github/release/terraform-do-modules/terraform-digitalocean-certificate.svg"
+    url: "https://github.com/terraform-do-modules/terraform-digitalocean-certificate/releases/latest"
+  - name: "tfsec"
+    image: "https://github.com/terraform-do-modules/terraform-digitalocean-certificate/actions/workflows/tfsec.yml/badge.svg"
+    url: "https://github.com/terraform-do-modules/terraform-digitalocean-certificate/actions/workflows/tfsec.yml"
   - name: "Licence"
-    image: "https://img.shields.io/badge/License-MIT-blue.svg"
+    image: "https://img.shields.io/badge/License-APACHE-blue.svg"
     url: "LICENSE.md"
+
+prerequesties:
+  - name: Terraform 1.5.4
+    url: https://learn.hashicorp.com/terraform/getting-started/install.html
 
 #  description of this project
 description: |-
@@ -36,21 +43,20 @@ usage : |-
   ### custom-certificate
   ```hcl
       module "custom_certificate" {
-      source             = "clouddrove/certificate/digitalocean"
-      version            = "0.15.0"
+      source             = "terraform-do-modules/certificate/digitalocean"
+      version            = "1.0.0"
       certificate_name   = "test"
-      private_key        = "./../../../_ssl/private-key.pem"
-      leaf_certificate   = "./../../../_ssl/star.crt"
-      custom_certificate = true
+      private_key        = "./../../private_key.pem"
+      leaf_certificate   = "./../../cert.pem"
+      certificate_chain  = "./../../fullchain.pem"
     }
   ```
   ### lets-encrypt-certificate
   ```hcl
       module "lets_encrypt_certificate" {
-      source                   = "clouddrove/certificate/digitalocean"
-      version                  = "0.15.0"
+      source                   = "terraform-do-modules/certificate/digitalocean"
+      version                  = "1.0.0"
       certificate_name         = "test"
-      domain_names             = ["clouddrove.com"]
-      lets_encrypt_certificate = true
+      domain_names             = ["clouddrove.ca"]
     }
   ```

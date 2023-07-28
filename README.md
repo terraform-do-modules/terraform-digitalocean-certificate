@@ -62,7 +62,7 @@ Here are examples of how you can use this module in your inventory structure:
     source             = "clouddrove/certificate/digitalocean"
     version            = "0.15.0"
     certificate_name   = "test"
-    private_key        = "./../../../_ssl/private-key.pem"
+    private_key        = "./../../../_ssl/private_key.pem"
     leaf_certificate   = "./../../../_ssl/star.crt"
     custom_certificate = true
   }
