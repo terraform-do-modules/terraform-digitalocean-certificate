@@ -5,12 +5,18 @@ on:
   pull_request:
   workflow_dispatch:
 jobs:
-  tf-static-checks-custom-certificate-example:
+  complete-example:
     uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@1.4.0
     with:
       working_directory: './_examples/complete/'
 
-  tf-static-checks-lets_encrypt-certificate-example:
+  lets_encrypt-certificate-example:
     uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@1.4.0
     with:
       working_directory: './_examples/lets_encrypt_certificate/'
+
+# Seperate Job for TFlint workflow call
+  tf-lint:
+    uses: clouddrove/github-shared-workflows/.github/workflows/tf-lint.yml@master
+    secrets:
+      GITHUB: ${{ secrets.GITHUB }}
