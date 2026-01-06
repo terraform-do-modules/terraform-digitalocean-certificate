@@ -6,12 +6,12 @@ on:
   workflow_dispatch:
 jobs:
   complete-example:
-    uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@1.4.0
+    uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@master
     with:
       working_directory: './_examples/complete/'
 
   lets_encrypt-certificate-example:
-    uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@1.4.0
+    uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@master
     with:
       working_directory: './_examples/lets_encrypt_certificate/'
 
