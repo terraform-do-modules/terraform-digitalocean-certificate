@@ -47,6 +47,11 @@ variable "type" {
   type        = string
   default     = "custom"
   description = "The type of certificate to provision"
+
+  validation {
+    condition     = contains(["custom", "lets_encrypt"], var.type)
+    error_message = "type must be one of: custom, lets_encrypt."
+  }
 }
 
 variable "certificate_type" {
