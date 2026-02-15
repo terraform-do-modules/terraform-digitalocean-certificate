@@ -115,6 +115,11 @@ Here are examples of how you can use this module in your inventory structure:
 
 
 
+## Release Notes Quality
+
+- Changelog follows a consistent release narrative for stakeholder readability.
+- Release-note standard: [`docs/release-notes-guidelines.md`](docs/release-notes-guidelines.md).
+
 ## Feedback 
 If you come accross a bug or have any feedback, please log it in our [issue tracker](https://github.com/terraform-do-modules/terraform-digitalocean-certificate/issues), or feel free to drop us an email at [hello@clouddrove.com](mailto:hello@clouddrove.com).
 
